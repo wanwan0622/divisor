@@ -2,6 +2,19 @@
 
 #GUIを書いてみる
 
+import tkinter
+
+##フレームの作成
+root = tkinter.Tk()
+
+##フレームの名前を設定
+root.title("divisor_Tkinter")
+
+##ウィンドウの大きさを設定
+root.geometry("400x400")
+
+##イベントループ
+root.mainloop()
 
 
 
