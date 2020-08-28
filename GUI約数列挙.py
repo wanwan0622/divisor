@@ -11,14 +11,17 @@ def divisor(n): #n以下の約数列挙
     table = list(set(table))
     table.sort()
     ans = ""
-    for j in table:
-        ans += str(j) + ' '
+    for j in range(len(table)):
+        ans += str(table[j]) + ' '
+        if (j + 1) % 10 == 0:
+            ans += '\n'
     return ans
 
 
 #GUIを書いてみる
 
 import tkinter
+from tkinter import messagebox
 
 ##フレームの作成
 root = tkinter.Tk()
@@ -27,7 +30,7 @@ root = tkinter.Tk()
 root.title("divisor_Tkinter")
 
 ##ウィンドウの大きさを設定
-root.geometry("800x150")
+root.geometry("300x150")
 
 ##ラベル作成
 label_question = tkinter.Label(root, text = "入力された数の約数を列挙します")
@@ -39,9 +42,13 @@ txt.place(x = 50, y = 30)
 
 ##ボタンが押された時に実行される関数
 def clicked():
-    input_num = int(txt.get())
-    label_ans = tkinter.Label(root, text = divisor(input_num))
-    label_ans.place(x = 10, y = 60)
+    input_num = txt.get()
+    if input_num == '':
+        res = messagebox.showwarning("エラー", "数字が入力されていません")
+        print("showwarning", res)
+    else:
+        label_ans = tkinter.Label(root, text = divisor(int(input_num)))
+        label_ans.place(x = 10, y = 60)
     txt.delete(0, tkinter.END)
 
 ##ボタンの作成
