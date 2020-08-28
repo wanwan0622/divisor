@@ -13,7 +13,8 @@ def divisor(n): #n以下の約数列挙
     ans = ''
     #len_n = len(str(n))
     for j in range(len(table)):
-        ans += '{:<7}'.format(str(table[j]))
+        #ans += '{:<7}'.format(str(table[j]))
+        ans += str(table[j]) + '\t'
         if (j + 1) % 10 == 0:
             ans += '\n'
     return ans
@@ -31,7 +32,7 @@ root = tkinter.Tk()
 root.title("divisor_Tkinter")
 
 ##ウィンドウの大きさを設定
-root.geometry("500x150")
+root.geometry("700x300")
 
 ##ラベル作成
 label_question = tkinter.Label(root, text = "入力された数の約数を列挙します")
@@ -48,7 +49,7 @@ def clicked():
         res = messagebox.showwarning("エラー", "数字が入力されていません")
         print("showwarning", res)
     else:
-        label_ans = tkinter.Label(root, text = divisor(int(input_num)), justify = 'left')
+        label_ans = tkinter.Label(root, text = divisor(int(input_num)), justify = 'left', font = "VLゴシック")
         label_ans.place(x = 10, y = 60)
     txt.delete(0, tkinter.END)
 
