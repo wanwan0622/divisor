@@ -33,28 +33,40 @@ root.title("divisor_Tkinter")
 
 ##ウィンドウの大きさを設定
 root.geometry("700x300")
+#root['bg'] = "#005000"
 
 ##ラベル作成
-label_question = tkinter.Label(root, text = "入力された数の約数を列挙します")
+var_1 = tkinter.StringVar()
+var_1.set("入力された数の約数を列挙します")
+label_question = tkinter.Label(root, textvariable = var_1)#, fg = "#ffffff", bg = "#005000")
 label_question.grid(row = 0)
 
 ##テキストボックスの作成
-txt = tkinter.Entry(width = 10)
+txt = tkinter.Entry(width = 10)#, bg = "#005000")
 txt.place(x = 50, y = 30)
 
+var_2 = tkinter.StringVar()
+var_2.set(" ")
 ##ボタンが押された時に実行される関数
-def clicked():
+def clicked(self):
     input_num = txt.get()
     if input_num == '':
         res = messagebox.showwarning("エラー", "数字が入力されていません")
         print("showwarning", res)
     else:
-        label_ans = tkinter.Label(root, text = divisor(int(input_num)), justify = 'left', font = "VLゴシック")
-        label_ans.place(x = 10, y = 60)
+        #label_ans.place_forget()
+        #var_2 = tkinter.StringVar()
+        var_2.set(divisor(int(input_num)))
     txt.delete(0, tkinter.END)
+    return var_2
+label_ans = tkinter.Label(root, textvariable = var_2, justify = 'left', font = "VLゴシック")
+label_ans.place(x = 10, y = 60)
 
 ##ボタンの作成
-button = tkinter.Button(root, text = "PUSH", command = clicked)
+#var_3 = tkinter.StringVar()
+#var_3.set("PUSH")
+button = tkinter.Button(root, text = "PUSH", fg = "blue", bg = "red")
+button.bind("<Button-1>",clicked)
 button.place(x = 150, y = 30)
 
 ##イベントループ
